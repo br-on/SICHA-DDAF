@@ -54,6 +54,8 @@ app.post("/chamados", async (req, res) => {
     }
 });
 
+app.use(express.static(__dirname));
+
 // Inicia o servidor
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
