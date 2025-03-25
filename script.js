@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(data);
 
             try {
-                const response = await fetch('/chamados', {
+                // Altere a URL para a rota do Vercel
+                const response = await fetch('/api/chamados', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
