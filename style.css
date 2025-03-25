@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:opsz,wght@10..72,100..900&display=swap');
+
+.big-shoulders-inline {
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+}
+
+:root {
+    --primary-bg: #2E4C58;
+    --accent-color: #F8E3A3;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--primary-bg);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 8px;
+}
+header button {
+    width: 150px;
+    background-color: var(--accent-color);
+    color: black
+}
+header button:hover {
+    background-color: azure;
+}
+
+.container {
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: var(--primary-bg);
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+    color: var(--primary-bg);
+}
+
+select, input, textarea, button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: var(--primary-bg);
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: var(--accent-color);
+    color: black;
+}
+footer {
+    margin-top: 25px;
+}
+.footer-sdds4{
+    font-size: 1.5em;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: solid 2.5px var(--accent-color);
+    border-right: solid 2.5px var(--accent-color);
+}
+
+@media (max-width: 760px) {
+    .container {
+        width: 80%;
+    }
+}

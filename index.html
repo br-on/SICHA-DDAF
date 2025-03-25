@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chamados - DDAF</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <button>Ver chamado</button>
+    </header>
+    <div class="container">
+        <h2>Abertura de Chamados DDAF</h2>
+        <form id="chamadoForm">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="solicitante" required>
+
+            <label for="unidade">Unidade de Saúde:</label>
+            <select id="us" required>
+                <option value="">Selecione...</option>
+                <option>USF+ MISTA OLINTO OLEVEIRA</option>
+                <option>USF+ CARANGUEJO</option>
+                <option>USF+ VILA ARRAES</option>
+                <option>USF+ JARDIM TERESÓPOLIS</option>
+                <option>USF+ EMOCY KRAUSE</option>
+                <option>USF AMAURY DE MEDEIROS</option>
+                <option>USF COSME E DAMIÃO</option>
+                <option>USF BARREIRAS</option>
+                <option>USF BRASILIT</option>
+                <option>USF ROSA SELVAGEM</option>
+                <option>USF SITIO WANDERLEY</option>
+                <option>USF VILA UNIÃO</option>
+                <option>USF SKYLAB</option>
+                <option>USF CASARÃO DO CORDEIRO</option>
+                <option>USF ENGENHO DO MEIO</option>
+                <option>USF SITIO DA PALMEIRAS</option>
+                <option>USF SITIO CARDOSO</option>
+                <option>USF COSIROF</option>
+                <option>USF SINOS</option>
+                <option>USF MACAE</option>
+                <option>USF VIETNÃ</option>
+                <option>UBT JOAQUIM CAVALCANTE</option>
+                <option>UBT DR. JOSE DUSTAN</option>
+                <option>CAPS EULÂMPIO</option>
+                <option>CAPS ESPAÇO VIDA</option>
+            </select>
+
+            <label for="tipo-unidade">Tipo de Unidade de Saúde:</label>
+            <select id="tipo_us" required>
+                <option value="">Selecione...</option>
+                <option>USF+</option>
+                <option>USF</option>
+                <option>UBT</option>
+                <option>CAPS</option>
+            </select>
+
+            <label for="tipo-demanda">Tipo de Demanda:</label>
+            <select id="tipo_demanda" required>
+                <option value="">Selecione...</option>
+                <option>climatizacao</option>
+                <option>carro-pipa</option>
+                <option>poda</option>
+                <option>hidraulica</option>
+                <option>eletrica</option>
+                <option>almoxarifado</option>
+                <option>reparos</option>
+                <option>infraestrutura</option>
+                <option>capinacao</option>
+                <option>bens-inserviveis</option>
+                <option>agua-mineral</option>
+                <option>lixo-infectado</option>
+            </select>
+
+            <label for="descricao">Descrição da Demanda:</label>
+            <textarea id="desc_demanda" rows="4" required></textarea>
+
+            <label for="data">Data da Demanda:</label>
+            <input type="date" id="dt_demanda" required>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+    <footer> 
+        Desenvolvido por 
+        <div class="footer-sdds4 big-shoulders-inline">Saúde Digital DS-IV</div>
+    </footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
