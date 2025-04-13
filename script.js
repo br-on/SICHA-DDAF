@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log(result);
                 if (response.ok) {
                     const numeroDemanda = result.data?.[0]?.n_demanda || n_demanda; // Usa o da resposta, ou o que foi gerado
-                    alert('Demanda registrada com sucesso!\nNúmero da demanda: ${numeroDemanda}');
+                    alert(`Demanda registrada com sucesso!\nNúmero da demanda: ${numeroDemanda}`);
                     form.reset(); // Limpar o formulário após o envio
                 } else {
                     alert('Erro ao registrar demanda.');
