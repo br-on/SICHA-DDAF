@@ -80,12 +80,13 @@ document.getElementById("btnBuscarDemanda").addEventListener("click", async () =
 
         const chamado = await response.json();
 
-        if (!chamado || chamado.length === 0) {
+        if (!chamado || Object.keys(chamado).length === 0) {
             document.getElementById("resultadoDemanda").innerHTML = "<p>Nenhum chamado encontrado com esse número.</p>";
             return;
         }
-
-        const c = chamado[0]; // Primeiro resultado
+        
+        const c = chamado;
+        
         const html = `
             <table border="1" cellpadding="8">
                 <tr><th>Nº Demanda</th><td>${c.n_demanda}</td></tr>
