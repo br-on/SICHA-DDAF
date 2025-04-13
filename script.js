@@ -54,15 +54,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Alternância entre as seções
-document.getElementById("btnAbrirChamado").addEventListener("click", () => {
+const btnAbrir = document.getElementById("btnAbrirChamado");
+const btnVer = document.getElementById("btnVerChamado");
+
+btnAbrir.addEventListener("click", () => {
     document.querySelector(".container").style.display = "block";
     document.querySelector(".container-ver-chamado").style.display = "none";
+
+    // Atualiza classes
+    btnAbrir.classList.add("botao-ativado");
+    btnVer.classList.remove("botao-ativado");
 });
 
-document.getElementById("btnVerChamado").addEventListener("click", () => {
+btnVer.addEventListener("click", () => {
     document.querySelector(".container").style.display = "none";
     document.querySelector(".container-ver-chamado").style.display = "block";
+
+    // Atualiza classes
+    btnVer.classList.add("botao-ativado");
+    btnAbrir.classList.remove("botao-ativado");
 });
 
 // Função de buscar chamado

@@ -51,7 +51,10 @@ header button:hover {
 }
 
 .botao-ativado {
-    background-color: var(--accent-color);
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: 2px solid #0056b3;
 }
 
 .container {
