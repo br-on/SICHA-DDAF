@@ -79,6 +79,7 @@ document.getElementById("btnBuscarDemanda").addEventListener("click", async () =
         if (!response.ok) throw new Error("Erro ao buscar o chamado.");
 
         const chamado = await response.json();
+        console.log(chamado);
 
         if (!chamado || Object.keys(chamado).length === 0) {
             document.getElementById("resultadoDemanda").innerHTML = "<p>Nenhum chamado encontrado com esse número.</p>";
