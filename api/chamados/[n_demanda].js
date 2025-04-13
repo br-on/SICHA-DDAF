@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   }
 
   const { data, error } = await supabase
-    .from('chamados')
+    .from('ddaf-chamados')
     .select('*')
     .eq('n_demanda', n_demanda);
 
