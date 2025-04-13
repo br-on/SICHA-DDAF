@@ -53,3 +53,57 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("Formulário não encontrado.");
     }
 });
+
+// Alternância entre as seções
+document.getElementById("btnAbrirChamado").addEventListener("click", () => {
+    document.querySelector(".container").style.display = "block";
+    document.querySelector(".container-ver-chamado").style.display = "none";
+});
+
+document.getElementById("btnVerChamado").addEventListener("click", () => {
+    document.querySelector(".container").style.display = "none";
+    document.querySelector(".container-ver-chamado").style.display = "block";
+});
+
+// Função de buscar chamado
+document.getElementById("btnBuscarDemanda").addEventListener("click", async () => {
+    const nDemanda = document.getElementById("buscar-demanda").value.trim();
+
+    if (!nDemanda) {
+        alert("Digite um número de demanda.");
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://chamado-dsiv.vercel.app/api/chamados/${nDemanda}`);
+        if (!response.ok) throw new Error("Erro ao buscar o chamado.");
+
+        const chamado = await response.json();
+
+        if (!chamado || chamado.length === 0) {
+            document.getElementById("resultadoDemanda").innerHTML = "<p>Nenhum chamado encontrado com esse número.</p>";
+            return;
+        }
+
+        const c = chamado[0]; // Primeiro resultado
+        const html = `
+            <table border="1" cellpadding="8">
+                <tr><th>Nº Demanda</th><td>${c.n_demanda}</td></tr>
+                <tr><th>Solicitante</th><td>${c.solicitante}</td></tr>
+                <tr><th>Unidade</th><td>${c.us}</td></tr>
+                <tr><th>Tipo de Demanda</th><td>${c.tipo_demanda}</td></tr>
+                <tr><th>Descrição</th><td>${c.desc_demanda}</td></tr>
+                <tr><th>Data da Demanda</th><td>${c.dt_demanda}</td></tr>
+                <tr><th>Andamento</th><td>${c.andamento || "-"}</td></tr>
+                <tr><th>Status</th><td>${c.status || "-"}</td></tr>
+                <tr><th>Observação</th><td>${c.observacao || "-"}</td></tr>
+                <tr><th>Data de Atualização</th><td>${c.dt_atualizacao || "-"}</td></tr>
+            </table>
+        `;
+
+        document.getElementById("resultadoDemanda").innerHTML = html;
+    } catch (err) {
+        console.error("Erro:", err);
+        document.getElementById("resultadoDemanda").innerHTML = "<p>Erro ao buscar o chamado.</p>";
+    }
+});

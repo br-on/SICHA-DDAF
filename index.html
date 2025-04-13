@@ -8,8 +8,8 @@
 </head>
 <body>
     <header>
-        <button class="botao-ativado">Abrir chamado</button>
-        <button>Ver chamado</button>
+        <button id="btnAbrirChamado" class="botao-ativado">Abrir chamado</button>
+        <button id="btnVerChamado">Ver chamado</button>
     </header>
     <div class="container">
         <h2>Abrir Chamado - DDAF</h2>
@@ -82,6 +82,16 @@
             <button type="submit">Enviar</button>
         </form>
     </div>
+    <div class="container-ver-chamado" style="display: none;">
+        <h2>Ver Chamado</h2>
+        <label for="buscar-demanda">Digite o número da demanda:</label>
+        <input type="number" id="buscar-demanda" placeholder="Ex: 1234567">
+        <button id="btnBuscarDemanda">Buscar</button>
+      
+        <div id="resultadoDemanda" style="margin-top: 20px;">
+          <!-- Resultado da busca será inserido aqui -->
+        </div>
+      </div>
     <footer> 
         Desenvolvido por 
         <div class="footer-sdds4 big-shoulders-inline">Saúde Digital DS-IV</div>
