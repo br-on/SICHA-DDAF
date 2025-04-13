@@ -18,25 +18,34 @@ body {
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
+    padding: 2vh 5vw;
+    box-sizing: border-box;
 }
 
 header {
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
-    
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 1rem;
 }
+
 header button {
-    width: 150px;
+    flex: 1;
+    min-width: 120px;
+    padding: 10px;
     color: black;
     background-color: aliceblue;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
 }
+
 header button:hover {
     background-color: azure;
 }
@@ -48,31 +57,39 @@ header button:hover {
 .container {
     background: white;
     color: black;
-    padding: 20px;
+    padding: 1.5em;
     border-radius: 8px;
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 h2 {
     text-align: center;
     color: var(--primary-bg);
+    font-size: 1.5em;
+    margin-bottom: 1em;
 }
 
 label {
     font-weight: bold;
     display: block;
-    margin-top: 10px;
+    margin-top: 1em;
     color: var(--primary-bg);
 }
 
-select, input, textarea, button {
+select,
+input,
+textarea,
+button {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
+    padding: 0.75em;
+    margin-top: 0.5em;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
 }
 
 button {
@@ -80,18 +97,23 @@ button {
     color: white;
     border: none;
     cursor: pointer;
-    margin-top: 15px;
+    margin-top: 1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button:hover {
     background-color: var(--accent-color);
     color: black;
 }
+
 footer {
-    margin-top: 25px;
+    margin-top: 2em;
+    width: 100%;
+    text-align: center;
 }
-.footer-sdds4{
-    font-size: 1.5em;
+
+.footer-sdds4 {
+    font-size: 1.2em;
     color: white;
     border-radius: 10px;
     padding: 10px;
@@ -100,11 +122,41 @@ footer {
     border-right: solid 2.5px var(--accent-color);
 }
 
+/* Responsividade */
 @media (max-width: 760px) {
     .container {
-        width: 80%;
+        width: 90%;
+        padding: 1em;
     }
-    body {
-        margin-top: 50px;
+
+    header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    header button {
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    .footer-sdds4 {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 400px) {
+    select,
+    input,
+    textarea,
+    button {
+        font-size: 0.95em;
+        padding: 0.6em;
+    }
+
+    .container {
+        padding: 1em;
     }
 }

@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         console.log("Requisição recebida:", req.body);  // Exibir os dados enviados
 
         try {
-            const { solicitante, us, tipo_us, tipo_demanda, desc_demanda, dt_demanda } = req.body;
+            const { n_demanda, solicitante, us, tipo_us, tipo_demanda, desc_demanda, dt_demanda } = req.body;
 
             console.log("Dados extraídos:", {
                 solicitante,
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
 
             const { data, error } = await supabase
                 .from("ddaf-chamados")
-                .insert([{ solicitante, us, tipo_us, tipo_demanda, desc_demanda, dt_demanda }]);
+                .insert([{ n_demanda, solicitante, us, tipo_us, tipo_demanda, desc_demanda, dt_demanda }]);
 
             if (error) {
                 throw error;

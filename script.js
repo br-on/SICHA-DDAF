@@ -11,8 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const tipo_demanda = document.getElementById('tipo_demanda').value;
             const desc_demanda = document.getElementById('desc_demanda').value;
             const dt_demanda = document.getElementById('dt_demanda').value;
+            // Gera número aleatório com 7 dígitos
+            const n_demanda = Math.floor(1000000 + Math.random() * 9000000);
 
             const data = {
+                n_demanda,
                 solicitante,
                 us,
                 tipo_us,
@@ -36,7 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const result = await response.json();
                 console.log(result);
                 if (response.ok) {
-                    alert('Demanda registrada com sucesso!');
+                    const numeroDemanda = result.data?.[0]?.n_demanda || n_demanda; // Usa o da resposta, ou o que foi gerado
+                    alert('Demanda registrada com sucesso!\nNúmero da demanda: ${numeroDemanda}');
                     form.reset(); // Limpar o formulário após o envio
                 } else {
                     alert('Erro ao registrar demanda.');
