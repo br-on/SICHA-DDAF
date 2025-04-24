@@ -99,7 +99,7 @@ document.getElementById("btnBuscarDemanda").addEventListener("click", async () =
         const c = chamado[0];
         
         const html = `
-            <<table border="1" cellpadding="8">
+            <table border="1" cellpadding="8">
                 <tr><th>Nº Demanda</th><td>${c.n_demanda}</td></tr>
                 <tr><th>Solicitante</th><td>${c.solicitante}</td></tr>
                 <tr><th>Unidade</th><td>${c.us}</td></tr>
