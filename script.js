@@ -1,9 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('chamadoForm');
+    const submitButton = form?.querySelector('button[type="submit"]');
+    let isSending = false;
+    let lastSubmitTime = 0;
 
     if (form) {
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
+
+            // Bloqueia múltiplos envios simultâneos
+            if (isSending) return;
+
+            // Impede reenvio em menos de 3 segundos
+            if (Date.now() - lastSubmitTime < 3000) {
+                alert('Aguarde alguns segundos antes de enviar novamente.');
+                return;
+            }
+
+            isSending = true;
+            lastSubmitTime = Date.now();
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Enviando...';
+            }
 
             const solicitante = document.getElementById('solicitante').value;
             const us = document.getElementById('us').value;
@@ -11,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const tipo_demanda = document.getElementById('tipo_demanda').value;
             const desc_demanda = document.getElementById('desc_demanda').value;
             const dt_demanda = document.getElementById('dt_demanda').value;
-            // Gera número aleatório com 7 dígitos
             const n_demanda = Math.floor(1000000 + Math.random() * 9000000);
 
             const data = {
@@ -24,10 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 dt_demanda
             };
 
-            console.log(data);
-
             try {
-                // Altere a URL para a rota do Vercel
                 const response = await fetch('/api/chamados', {
                     method: 'POST',
                     headers: {
@@ -38,21 +53,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const result = await response.json();
                 console.log(result);
+
                 if (response.ok) {
-                    const numeroDemanda = result.data?.[0]?.n_demanda || n_demanda; // Usa o da resposta, ou o que foi gerado
+                    const numeroDemanda = result.data?.[0]?.n_demanda || n_demanda;
                     alert(`Demanda registrada com sucesso!\nNúmero da demanda: ${numeroDemanda}`);
-                    form.reset(); // Limpar o formulário após o envio
+                    form.reset();
                 } else {
                     alert('Erro ao registrar demanda.');
                 }
             } catch (error) {
                 console.error('Erro no envio:', error);
+                alert('Erro de conexão. Tente novamente mais tarde.');
+            } finally {
+                isSending = false;
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Enviar';
+                }
             }
         });
     } else {
         console.log("Formulário não encontrado.");
     }
 });
+
 
 const btnAbrir = document.getElementById("btnAbrirChamado");
 const btnVer = document.getElementById("btnVerChamado");
