@@ -1,156 +1,283 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chamados - DDAF</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Radar DDAF</title>
+<style>
+  /* --- Variáveis e Reset --- */
+  :root {
+    --primary-color: #0f2027; /* Azul bem escuro */
+    --secondary-color: #203a43; /* Gradiente meio */
+    --accent-color: #00d2ff; /* Azul Ciano brilhante */
+    --highlight-color: darkorange; /* Sua cor de destaque */
+    --text-light: #ffffff;
+    --text-dark: #333333;
+    --bg-light: #f4f7f6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif; }
+
+  body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+  }
+
+  /* --- Hero Section (Banner Principal) --- */
+  .hero-banner {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), #2c5364);
+    color: var(--text-light);
+    padding: 80px 20px 60px; /* Mais espaço no topo */
+    text-align: center;
+    border-bottom-left-radius: 50px; /* Design moderno curvo */
+    border-bottom-right-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .hero-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 40px;
+  }
+
+  /* --- Grid de Funcionalidades --- */
+  .features-container {
+    max-width: 1100px;
+    margin: -40px auto 60px; /* Sobe um pouco sobre o banner */
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .feature-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid var(--accent-color); /* Detalhe colorido no topo */
+  }
+
+  .feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    display: block;
+  }
+
+  .feature-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--secondary-color);
+  }
+
+  .feature-desc {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* --- Seção de Acesso e Cadastro (NOVO) --- */
+  .access-section {
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 40px;
+    font-weight: 700;
+  }
+
+  .steps-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .step-box {
+    flex: 1;
+    min-width: 300px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    position: relative;
+    text-align: left;
+  }
+
+  .step-number {
+    background-color: var(--highlight-color);
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  .step-title {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+  }
+
+  .contact-info {
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-size: 0.95rem;
+    border-left: 4px solid var(--highlight-color);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #444;
+  }
+  
+  .contact-item span {
+    margin-right: 10px;
+  }
+
+  /* --- Botão CTA --- */
+  .cta-button {
+    display: inline-block;
+    background-color: var(--highlight-color);
+    color: white;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
+    margin-top: 20px;
+  }
+
+  .cta-button:hover {
+    background-color: #e67e00;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  /* --- Responsividade --- */
+  @media (max-width: 768px) {
+    .hero-title { font-size: 2rem; }
+    .features-container { margin-top: -20px; }
+    .steps-container { flex-direction: column; }
+    .hero-banner { border-radius: 0 0 30px 30px; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <button id="btnAbrirChamado">Abrir chamado</button>
-        <button id="btnVerChamado">Ver chamado</button>
-    </header>
-    <div class="container">
-        <h2>Abrir Chamado : DDAF Distrito Sanitário IV</h2>
-        <form id="chamadoForm" method="POST" autocomplete="off">
-            <label for="nome">Nome Completo:</label>
-            <input type="text" id="solicitante" required>
 
-            <label for="unidade">Unidade de Saúde:</label>
-            <select id="us" required>
-                <option value="">Selecione...</option>
-                <optgroup label="USF+">
-                    <option value="USF MAIS CARANGUEJO">USF+ CARANGUEJO</option>
-                    <option value="USF MAIS EMOCY KRAUSE">USF+ EMOCY KRAUSE</option>
-                    <option value="USF MAIS JARDIM TERESÓPOLIS">USF+ JARDIM TERESÓPOLIS</option>
-                    <option value="USF MAIS MISTA OLINTO OLEVEIRA">USF+ MISTA OLINTO OLEVEIRA</option>
-                    <option value="USF MAIS VILA ARRAES">USF+ VILA ARRAES</option>
-                  </optgroup>
-                
-                  <optgroup label="USF">
-                    <option value="USF AMAURY DE MEDEIROS">USF AMAURY DE MEDEIROS</option>
-                    <option value="USF BARREIRAS">USF BARREIRAS</option>
-                    <option value="USF BRASILIT">USF BRASILIT</option>
-                    <option value="USF CASARÃO DO CORDEIRO">USF CASARÃO DO CORDEIRO</option>
-                    <option value="USF COSIROF">USF COSIROF</option>
-                    <option value="USF COSME E DAMIÃO">USF COSME E DAMIÃO</option>
-                    <option value="USF ENGENHO DO MEIO">USF ENGENHO DO MEIO</option>
-                    <option value="USF MACAE">USF MACAE</option>
-                    <option value="USF ROSA SELVAGEM">USF ROSA SELVAGEM</option>
-                    <option value="USF SINOS">USF SINOS</option>
-                    <option value="USF SITIO CARDOSO">USF SITIO CARDOSO</option>
-                    <option value="USF SITIO DA PALMEIRAS">USF SITIO DA PALMEIRAS</option>
-                    <option value="USF SITIO WANDERLEY">USF SITIO WANDERLEY</option>
-                    <option value="USF SKYLAB">USF SKYLAB</option>
-                    <option value="USF VILA UNIÃO">USF VILA UNIÃO</option>
-                    <option value="USF VIETNÃ">USF VIETNÃ</option>
-                  </optgroup>
-                
-                  <optgroup label="UBT">
-                    <option value="UBT DR. JOSE DUSTAN">UBT DR. JOSE DUSTAN</option>
-                    <option value="UBT JOAQUIM CAVALCANTE">UBT JOAQUIM CAVALCANTE</option>
-                  </optgroup>
-                
-                  <optgroup label="CAPS">
-                    <option value="CAPS ESPAÇO VIDA">CAPS ESPAÇO VIDA</option>
-                    <option value="CAPS EULÂMPIO">CAPS EULÂMPIO</option>
-                  </optgroup>
-                
-                  <optgroup label="ACADEMIA">
-                    <option value="ACADEMIA POLO AV DO FORTE">ACADEMIA POLO AV DO FORTE</option>
-                    <option value="ACADEMIA POLO BEIRA RIO">ACADEMIA POLO BEIRA RIO</option>
-                    <option value="ACADEMIA POLO CAVOUCO">ACADEMIA POLO CAVOUCO</option>
-                    <option value="ACADEMIA POLO ENG DO MEIO">ACADEMIA POLO ENG DO MEIO</option>
-                    <option value="ACADEMIA POLO PRAÇA DO POETA">ACADEMIA POLO PRAÇA DO POETA</option>
-                    <option value="ACADEMIA POLO RODA DE FOGO">ACADEMIA POLO RODA DE FOGO</option>
-                    <option value="ACADEMIA POLO SALGUEIRO">ACADEMIA POLO SALGUEIRO</option>
-                    <option value="ACADEMIA PRAÇA DA VÁRZEA">ACADEMIA PRAÇA DA VÁRZEA</option>
-                  </optgroup>
-                
-                  <optgroup label="P.A">
-                    <option value="P.A DUSTAN">P.A DUSTAN</option>
-                    <option value="P.A ENG DO MEIO">P.A ENG DO MEIO</option>
-                    <option value="P.A PRADO">P.A PRADO</option>
-                    <option value="P.A VÁRZEA">P.A VÁRZEA</option>
-                    <option value="P.A VILA UNIÃO">P.A VILA UNIÃO</option>
-                    <option value="P.A">P.A</option>
-                  </optgroup>
-                
-                  <optgroup label="UA 24h">
-                    <option value="UA 24h CELESTE AÍDA">UA 24h CELESTE AÍDA</option>
-                  </optgroup>
-                
-                  <optgroup label="CECON">
-                    <option value="CECON">CECON</option>
-                  </optgroup>
-                
-                  <optgroup label="UCIS/SIS">
-                    <option value="UCIS/SIS">UCIS/SIS</option>
-                  </optgroup>
-
-                  <optgroup label="Sede">
-                    <option value="DISTRITO SANITARIO IV">DISTRITO SANITÁRIO IV</option>
-                  </optgroup>
-            </select>
-
-            <label for="tipo-unidade">Tipo de Unidade de Saúde:</label>
-            <select id="tipo_us" required>
-                <option value="">Selecione...</option>
-                <option>USF+</option>
-                <option>USF</option>
-                <option>UBT</option>
-                <option>CAPS</option>
-                <option>Academia</option>
-                <option>P.A</option>
-                <option>UA 24h</option>
-                <option>CECON</option>
-                <option>UCIS/SIS</option>
-                <option>Sede</option>
-            </select>
-
-            <label for="tipo-demanda">Tipo de Demanda:</label>
-            <select id="tipo_demanda" required>
-                <option value="">Selecione...</option>
-                <option value="agua-mineral">Água mineral</option>
-                <option value="almoxarifado">Almoxarifado</option>
-                <option value="bens-inserviveis">Bens inservíveis</option>
-                <option value="capinacao">Capinação</option>
-                <option value="carro-pipa">Carro pipa</option>
-                <option value="climatizacao">Climatizacao</option>
-                <option value="eletrica">Elétrica</option>
-                <option value="hidraulica">Hidráulica</option>
-                <option value="infraestrutura">Infraestrutura</option>
-                <option value="lixo-infectado">Lixo infectado</option>
-                <option value="poda">Poda</option>
-                <option value="reparos">Reparos</option>
-            </select>
-
-            <label for="descricao">Descrição da Demanda:</label>
-            <textarea id="desc_demanda" rows="4" required></textarea>
-
-            <label for="data">Data da Demanda:</label>
-            <input type="date" id="dt_demanda" required>
-
-            <button type="submit">Enviar</button>
-        </form>
+  <header class="hero-banner">
+    <div class="hero-content">
+      <h1 class="hero-title">Sistema <span style="color: var(--highlight-color);">Radar DDAF</span> disponível</h1>
+      <p class="hero-subtitle">Mais autonomia, segurança e agilidade para a gestão das suas demandas.</p>
     </div>
-    <div class="container-ver-chamado" style="display: none;">
-        <h2>Ver Chamado</h2>
-        <label for="buscar-demanda">Digite o número da demanda:</label>
-        <input type="number" id="buscar-demanda" placeholder="Ex: 1234567">
-        <button id="btnBuscarDemanda">Buscar</button>
+  </header>
+
+  <section class="features-container">
+    <div class="features-grid">
       
-        <div id="resultadoDemanda" style="margin-top: 20px;">
-          <!-- Resultado da busca será inserido aqui -->
+      <div class="feature-card">
+        <span class="feature-icon">🚀</span>
+        <h3 class="feature-title">Abertura Ágil</h3>
+        <p class="feature-desc">Abra novos chamados diretamente pelo painel principal, sem menus complicados.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h3 class="feature-title">Controle Total</h3>
+        <p class="feature-desc">Acompanhe status, histórico e evolução dos seus chamados em tempo real.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">📷</span>
+        <h3 class="feature-title">Envio de Imagens</h3>
+        <p class="feature-desc">Anexe prints e fotos para facilitar a identificação e solução do problema.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🔒</span>
+        <h3 class="feature-title">Segurança</h3>
+        <p class="feature-desc">Protocolos atualizados para garantir a proteção dos dados institucionais.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="access-section">
+    <h2 class="section-title">Como acessar o sistema?</h2>
+    
+    <div class="steps-container">
+      
+      <div class="step-box">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Realize seu Cadastro</h3>
+        <p>Acesse o portal do Sistema Radar e crie sua conta preenchendo seus dados profissionais.</p>
+        <a href="https://ddaf-painel.vercel.app/login" class="cta-button" style="width: 100%; text-align: center; margin-top: 20px;">Cadastrar Agora</a>
+      </div>
+
+      <div class="step-box">
+        <div class="step-number">2</div>
+        <h3 class="step-title">Solicite a Ativação</h3>
+        <p>Após o cadastro, entre em contato com o <strong>Saúde Digital DS - IV</strong> para liberar seu acesso.</p>
+        
+        <div class="contact-info">
+          <p style="margin-bottom: 10px;"><strong>Canais de Atendimento:</strong></p>
+          <div class="contact-item">
+            <span>📞</span> (whatsapp Bruno) (81) 99690-7665
+          </div>
+          
+          <div class="contact-item">
+            <span>📍</span> Distrito Sanitário IV - Saúde Digital
+          </div>
         </div>
       </div>
-    <footer> 
-        Desenvolvido por 
-        <div class="footer-sdds4 big-shoulders-inline">Saúde Digital DS-IV / Recife-PE</div>
-    </footer>
 
-<script src="script.js"></script>
+    </div>
+  </section>
 
 </body>
 </html>
